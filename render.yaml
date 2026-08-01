@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: transcriptor-pro
+    env: docker
+    plan: free
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: RAPIDAPI_KEY
+        sync: false
+      - key: INSTAGRAM_COOKIES
+        sync: false
