@@ -323,4 +323,4 @@ with gr.Blocks(title="Transcriptor Pro", theme=gr.themes.Soft(), css=CSS) as dem
         show_progress="full",
     )
 
-demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)))
+demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)), ssr_mode=False)
