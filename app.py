@@ -314,7 +314,7 @@ with gr.Blocks(title="Transcriptor Pro", theme=gr.themes.Soft(), css=CSS) as dem
             )
             full_text_hidden = gr.Textbox(visible=False)
 
-    gr.HTML('<div class="footer">⚡ Groq Whisper large-v3 · yt-dlp · instaloader · Nexpalmagency</div>')
+    gr.HTML('<div class="footer">⚡ Groq Whisper large-v3 · yt-dlp · instaloader · bynot</div>')
 
     transcribe_btn.click(
         fn=process,
