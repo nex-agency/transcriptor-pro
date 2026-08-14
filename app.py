@@ -106,12 +106,14 @@ def transcribe_groq(audio_path, language):
 
     client = Groq(api_key=GROQ_API_KEY)
     with open(final_path, "rb") as f:
-        result = client.audio.transcriptions.create(
-            file=(os.path.basename(final_path), f),
-            model="whisper-large-v3",
-            language=lang or "es",
-            response_format="text",
-        )
+        kwargs = {
+            "file": (os.path.basename(final_path), f),
+            "model": "whisper-large-v3",
+            "response_format": "text",
+        }
+        if lang:
+            kwargs["language"] = lang
+        result = client.audio.transcriptions.create(**kwargs)
     return result if isinstance(result, str) else result.text
 
 def dl_ytdlp(url, tmpdir, platform, cookies_file=None):
@@ -286,7 +288,7 @@ with gr.Blocks(title="Transcriptor Pro", theme=gr.themes.Soft(), css=CSS) as dem
             )
             gr.Markdown("### ⚙️ Opciones")
             language_select = gr.Dropdown(
-                choices=LANG_LIST, value="Español",
+                choices=LANG_LIST, value="Auto detectar",
                 label="🌐 Idioma del vídeo",
             )
 
